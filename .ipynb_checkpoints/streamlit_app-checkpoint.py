@@ -20,19 +20,19 @@ def app():
     behind a CNN is to use filters, or kernels, that can be convolved with the input data \
     to extract relevant features.')
     
-     st.write('A CNN typically consists of multiple layers, including convolutional layers, \
-     pooling layers, and fully connected layers. The convolutional layers are responsible \
-     for applying the filters to the input data, which helps to identify features such as edges, \
-     corners, and textures. The pooling layers are used to downsample the output of the \
-     convolutional layers, reducing the spatial dimensions of the data and helping to make \
-     the network more efficient. The fully connected layers are used to perform the final \
-     classification or regression task, taking the output of the previous layers and \
-     producing a final output.')
+    st.write('A CNN typically consists of multiple layers, including convolutional layers, \
+    pooling layers, and fully connected layers. The convolutional layers are responsible \
+    for applying the filters to the input data, which helps to identify features such as edges, \
+    corners, and textures. The pooling layers are used to downsample the output of the \
+    convolutional layers, reducing the spatial dimensions of the data and helping to make \
+    the network more efficient. The fully connected layers are used to perform the final \
+    classification or regression task, taking the output of the previous layers and \
+    producing a final output.')
 
-     st.write('During the training process, the weights of the filters and the parameters \
-     of the fully connected layers are adjusted through backpropagation, using a loss function \
-     such as cross-entropy or mean squared error. This allows the network to learn to \
-     recognize patterns and features in the input data, and to make accurate predictions on new data.')
+    st.write('During the training process, the weights of the filters and the parameters \
+    of the fully connected layers are adjusted through backpropagation, using a loss function \
+    such as cross-entropy or mean squared error. This allows the network to learn to \
+    recognize patterns and features in the input data, and to make accurate predictions on new data.')
  
     st.subheader('The CIFAR10-Dataset')
     st.write('CIFAR-10 is a popular image classification dataset that consists of 60,000 \
