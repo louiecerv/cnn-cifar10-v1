@@ -11,8 +11,8 @@ from tensorflow.keras.datasets import cifar10
 # Define the Streamlit app
 def app():
     train_images = []
-    train_labels) = []
-    test_image = []
+    train_labels = []
+    test_images = []
     test_labels = [] 
     
     st.title('Deep Learning Using Convolutional Neural Network on Tensorflow and Keras')
