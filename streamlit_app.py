@@ -94,11 +94,8 @@ def app():
                 plt.xlabel(class_names[train_labels[i][0]])
             st.pyplot(fig)
             
-        #set the number of hidden layers
-        neurons = st.slider('No. of neurons in the hidden layer', 5, 15, 10)
         #set the number or iterations
-        epochs = st.slider('Number of epochs', 50, 250, 100, 10)
-        
+        epochs = st.slider('Number of epochs', 5, 10, 5, 1) 
         if st.button('Run the Neural Network'):
             
             # Normalize pixel values between 0 and 1
@@ -133,7 +130,6 @@ def app():
 
             # Train the model
             batch_size = 64
-            epochs = 10
             model.fit(train_images, train_labels, batch_size=batch_size, epochs=epochs, validation_data=(test_images, test_labels), callbacks=[CustomCallback()])
 
             # Evaluate the model on the test set
