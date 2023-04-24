@@ -5,6 +5,7 @@ import streamlit as st
 import altair as alt
 import matplotlib.pyplot as plt
 import tensorflow as tf
+from tensorflow import keras
 from tensorflow.keras import datasets, layers, models
 from tensorflow.keras.datasets import cifar10
 
