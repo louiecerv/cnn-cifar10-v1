@@ -8,6 +8,16 @@ import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
 from tensorflow.keras.datasets import cifar10
 
+# Define a custom callback function to update the Streamlit interface
+class CustomCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        # Get the current loss and accuracy metrics
+        loss = logs['loss']
+        accuracy = logs['accuracy']
+        
+        # Update the Streamlit interface with the current epoch's output
+        st.write(f"Epoch {epoch}: loss = {loss:.4f}, accuracy = {accuracy:.4f}")
+
 # Define the Streamlit app
 def app():
     train_images = []
@@ -105,22 +115,13 @@ def app():
 
             # Train the model
             history = model.fit(train_images, train_labels, epochs=10, 
-                                validation_data=(test_images, test_labels))
+                                validation_data=(test_images, test_labels), callbacks=[CustomCallback()])
 
             # Evaluate the model
             test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
             print("Test accuracy:", test_acc)
             
-    st.write('In this version of the MLP we used the Keras library running on Tensorflow.  \
-            Keras is a high-level neural network library written in Python that can run \
-            on top of TensorFlow, Theano, and other machine learning frameworks. \
-            It was developed to make deep learning more accessible and easy to use \
-            for researchers and developers.  TensorFlow provides a platform for \
-            building and deploying machine learning models. It is designed to \
-            be scalable and can be used to build models ranging from small experiments\
-            to large-scale production systems. TensorFlow supports a wide range of \
-            machine learning algorithms, including deep learning, linear regression, \
-            logistic regression, decision trees, and many others.')        
+    st.write('Conclusion')        
    
 #run the app
 if __name__ == "__main__":
