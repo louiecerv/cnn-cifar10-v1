@@ -10,6 +10,10 @@ from tensorflow.keras.datasets import cifar10
 
 # Define the Streamlit app
 def app():
+    train_images = []
+    train_labels) = []
+    test_image = []
+    test_labels = [] 
     
     st.title('Deep Learning Using Convolutional Neural Network on Tensorflow and Keras')
     st.subheader('by Louie F. Cervantes M.Eng., WVSU College of ICT')
@@ -75,11 +79,37 @@ def app():
                 plt.xlabel(class_names[train_labels[i][0]])
             st.pyplot(fig)
             
+        #set the number of hidden layers
+        neurons = st.slider('No. of neurons in the hidden layer', 5, 15, 10)
+        #set the number or iterations
+        epochs = st.slider('Number of epochs', 50, 250, 100, 10)
         if st.button('Run the Neural Network'):
-            #set the number of hidden layers
-            neurons = st.slider('No. of neurons in the hidden layer', 5, 15, 10)
-            #set the number or iterations
-            epochs = st.slider('Number of epochs', 50, 250, 100, 10)
+            # Normalize pixel values to be between 0 and 1
+            train_images, test_images = train_images / 255.0, test_images / 255.0
+
+            # Define the CNN architecture
+            model = models.Sequential()
+            model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+            model.add(layers.MaxPooling2D((2, 2)))
+            model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+            model.add(layers.MaxPooling2D((2, 2)))
+            model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+            model.add(layers.Flatten())
+            model.add(layers.Dense(64, activation='relu'))
+            model.add(layers.Dense(10))
+
+            # Compile the model
+            model.compile(optimizer='adam',
+                          loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                          metrics=['accuracy'])
+
+            # Train the model
+            history = model.fit(train_images, train_labels, epochs=10, 
+                                validation_data=(test_images, test_labels))
+
+            # Evaluate the model
+            test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
+            print("Test accuracy:", test_acc)
             
     st.write('In this version of the MLP we used the Keras library running on Tensorflow.  \
             Keras is a high-level neural network library written in Python that can run \
