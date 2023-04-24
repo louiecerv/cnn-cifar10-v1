@@ -6,7 +6,7 @@ import altair as alt
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
-
+from tensorflow.keras.datasets import cifar10
 
 # Define the Streamlit app
 def app():
@@ -55,7 +55,7 @@ def app():
     Advanced Research (CIFAR) and is commonly used as a benchmark for image classification tasks.')
     
     # Load the CIFAR-10 dataset
-    (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
+    (train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
     
     st.subheader('Display Samples from the Dataset')
     with st.echo(code_location='below'):
