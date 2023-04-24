@@ -95,7 +95,7 @@ def app():
             st.pyplot(fig)
             
         #set the number or iterations
-        epochs = st.slider('Number of epochs', 5, 10, 5, 1) 
+        epochs = st.slider('Number of epochs', 3, 5, 3, 1) 
         if st.button('Run the Neural Network'):
             
             # Normalize pixel values between 0 and 1
