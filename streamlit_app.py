@@ -18,12 +18,15 @@ class CustomCallback(tf.keras.callbacks.Callback):
         # Update the Streamlit interface with the current epoch's output
         st.write(f"Epoch {epoch}: loss = {loss:.4f}, accuracy = {accuracy:.4f}")
 
+        
+train_images = []
+train_labels = []
+test_images = []
+test_labels = [] 
+    
 # Define the Streamlit app
 def app():
-    train_images = []
-    train_labels = []
-    test_images = []
-    test_labels = [] 
+
     
     st.title('Deep Learning Using Convolutional Neural Network on Tensorflow and Keras')
     st.subheader('by Louie F. Cervantes M.Eng., WVSU College of ICT')
@@ -69,6 +72,7 @@ def app():
     Advanced Research (CIFAR) and is commonly used as a benchmark for image classification tasks.')
     
     # Load the CIFAR-10 dataset
+    global train_images, train_labels, test_images, test_labels
     (train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
     
     st.subheader('Display Samples from the Dataset')
@@ -93,7 +97,9 @@ def app():
         neurons = st.slider('No. of neurons in the hidden layer', 5, 15, 10)
         #set the number or iterations
         epochs = st.slider('Number of epochs', 50, 250, 100, 10)
+        
         if st.button('Run the Neural Network'):
+            
             # Normalize pixel values to be between 0 and 1
             train_images, test_images = train_images / 255.0, test_images / 255.0
 
@@ -114,7 +120,7 @@ def app():
                           metrics=['accuracy'])
 
             # Train the model
-            history = model.fit(train_images, train_labels, epochs=10, 
+            history = model.fit(train_images, train_labels, epochs=2, 
                                 validation_data=(test_images, test_labels), callbacks=[CustomCallback()])
 
             # Evaluate the model
