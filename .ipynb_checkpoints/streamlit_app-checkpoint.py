@@ -65,7 +65,7 @@ def app():
                        'dog', 'frog', 'horse', 'ship', 'truck']
 
             # Print the first 20 images
-            fig = plt.figure(figsize=(6,6))
+            fig = plt.figure(figsize=(6,8))
             for i in range(20):
                 plt.subplot(5, 4, i+1)
                 plt.xticks([])
