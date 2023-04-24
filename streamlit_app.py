@@ -101,13 +101,13 @@ def app():
         if st.button('Run the Neural Network'):
             
             # Normalize pixel values between 0 and 1
-            x_train = x_train.astype("float32") / 255.0
-            x_test = x_test.astype("float32") / 255.0
+            train_images = train_images.astype("float32") / 255.0
+            test_images = test_images.astype("float32") / 255.0
 
             # Convert class labels to one-hot encoded vectors
             num_classes = 10
-            y_train = keras.utils.to_categorical(y_train, num_classes)
-            y_test = keras.utils.to_categorical(y_test, num_classes)
+            train_labels = keras.utils.to_categorical(train_labels, num_classes)
+            test_labels = keras.utils.to_categorical(test_labels, num_classes)
 
             # Define the CNN architecture
             model = keras.Sequential(
@@ -133,7 +133,7 @@ def app():
             # Train the model
             batch_size = 64
             epochs = 10
-            model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test), callbacks=[CustomCallback])
+            model.fit(train_images, train_labels, batch_size=batch_size, epochs=epochs, validation_data=(test_images, test_labels), callbacks=[CustomCallback])
 
             # Evaluate the model on the test set
             score = model.evaluate(x_test, y_test, verbose=0)
