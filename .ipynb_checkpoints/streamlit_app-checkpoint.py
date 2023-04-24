@@ -133,7 +133,7 @@ def app():
             model.fit(train_images, train_labels, batch_size=batch_size, epochs=epochs, validation_data=(test_images, test_labels), callbacks=[CustomCallback()])
 
             # Evaluate the model on the test set
-            score = model.evaluate(test_images, test_labels, verbose=1)
+            score = model.evaluate(test_images, test_labels, verbose=0)
             print("Test loss:", score[0])
             print("Test accuracy:", score[1])
 
