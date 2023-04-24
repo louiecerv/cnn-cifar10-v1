@@ -134,7 +134,7 @@ def app():
             # Train the model
             batch_size = 64
             epochs = 10
-            model.fit(train_images, train_labels, batch_size=batch_size, epochs=epochs, validation_data=(test_images, test_labels), callbacks=[CustomCallback])
+            model.fit(train_images, train_labels, batch_size=batch_size, epochs=epochs, validation_data=(test_images, test_labels), callbacks=[CustomCallback()])
 
             # Evaluate the model on the test set
             score = model.evaluate(x_test, y_test, verbose=0)
