@@ -102,7 +102,9 @@ def app():
             
             # Normalize pixel values to be between 0 and 1
             train_images, test_images = train_images / 255.0, test_images / 255.0
-
+            st.write(train_images[0])
+            st.write(test_images[0])
+            
             # Define the CNN architecture
             model = models.Sequential()
             model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
